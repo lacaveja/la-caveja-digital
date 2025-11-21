@@ -13,6 +13,7 @@ export interface Translations {
     description: string;
     viewMenu: string;
     orderNow: string;
+    ourPiadinas: string;
   };
   about: {
     title: string;
@@ -21,6 +22,7 @@ export interface Translations {
   menu: {
     title: string;
     allergens: string;
+    allergensButton: string;
     doughOptions: string;
     doughOptionsSubtitle: string;
   };
@@ -40,6 +42,9 @@ export interface Translations {
   footer: {
     rights: string;
     privacy: string;
+    whatsapp: string;
+    uberEats: string;
+    review: string;
   };
 }
 
@@ -57,6 +62,7 @@ export const translations: Record<Language, Translations> = {
       description: 'Piadineria La Caveja porta a Lugano la vera piadina romagnola: fresca, generosa e preparata al momento. Perfetta per un pranzo veloce ma gustoso, da vivere in stile take-away con tutto il sapore dell\'Italia.',
       viewMenu: 'Vai al Menu',
       orderNow: 'Ordina su Uber Eats',
+      ourPiadinas: 'Le nostre piadine:',
     },
     about: {
       title: 'La Nostra Storia',
@@ -65,6 +71,7 @@ export const translations: Record<Language, Translations> = {
     menu: {
       title: 'Il Nostro Menu',
       allergens: 'Per informazioni dettagliate sugli allergeni, si prega di rivolgersi al personale della Piadineria.',
+      allergensButton: 'Info allergeni',
       doughOptions: 'Opzioni Impasto',
       doughOptionsSubtitle: 'Puoi scegliere tra i seguenti tipi di impasto:',
     },
@@ -84,6 +91,9 @@ export const translations: Record<Language, Translations> = {
     footer: {
       rights: 'Tutti i diritti riservati',
       privacy: 'Privacy Policy',
+      whatsapp: 'WhatsApp',
+      uberEats: 'Uber Eats',
+      review: 'Recensione',
     },
   },
   en: {
@@ -99,6 +109,7 @@ export const translations: Record<Language, Translations> = {
       description: 'Piadineria La Caveja brings the authentic Romagnola piadina to Lugano: fresh, generous, and prepared on the spot. Perfect for a quick but delicious lunch, to enjoy take-away style with all the flavor of Italy.',
       viewMenu: 'View Menu',
       orderNow: 'Order on Uber Eats',
+      ourPiadinas: 'Our piadinas:',
     },
     about: {
       title: 'Our Story',
@@ -107,6 +118,7 @@ export const translations: Record<Language, Translations> = {
     menu: {
       title: 'Our Menu',
       allergens: 'For detailed allergen information, please contact our staff.',
+      allergensButton: 'Allergen Info',
       doughOptions: 'Dough Options',
       doughOptionsSubtitle: 'You can choose from the following dough types:',
     },
@@ -126,6 +138,9 @@ export const translations: Record<Language, Translations> = {
     footer: {
       rights: 'All rights reserved',
       privacy: 'Privacy Policy',
+      whatsapp: 'WhatsApp',
+      uberEats: 'Uber Eats',
+      review: 'Review',
     },
   },
   de: {
@@ -141,6 +156,7 @@ export const translations: Record<Language, Translations> = {
       description: 'Piadineria La Caveja bringt die authentische Romagnola-Piadina nach Lugano: frisch, großzügig und direkt zubereitet. Perfekt für ein schnelles, aber köstliches Mittagessen im Take-away-Stil mit dem vollen Geschmack Italiens.',
       viewMenu: 'Menü ansehen',
       orderNow: 'Bei Uber Eats bestellen',
+      ourPiadinas: 'Unsere Piadinas:',
     },
     about: {
       title: 'Unsere Geschichte',
@@ -149,6 +165,7 @@ export const translations: Record<Language, Translations> = {
     menu: {
       title: 'Unser Menü',
       allergens: 'Für detaillierte Allergeninformationen wenden Sie sich bitte an unser Personal.',
+      allergensButton: 'Allergen-Info',
       doughOptions: 'Teigoptionen',
       doughOptionsSubtitle: 'Sie können zwischen folgenden Teigsorten wählen:',
     },
@@ -168,6 +185,9 @@ export const translations: Record<Language, Translations> = {
     footer: {
       rights: 'Alle Rechte vorbehalten',
       privacy: 'Datenschutz',
+      whatsapp: 'WhatsApp',
+      uberEats: 'Uber Eats',
+      review: 'Bewertung',
     },
   },
   fr: {
@@ -183,6 +203,7 @@ export const translations: Record<Language, Translations> = {
       description: 'Piadineria La Caveja apporte la véritable piadina de Romagne à Lugano : fraîche, généreuse et préparée sur place. Parfaite pour un déjeuner rapide mais savoureux, à déguster en mode à emporter avec toute la saveur de l\'Italie.',
       viewMenu: 'Voir le Menu',
       orderNow: 'Commander sur Uber Eats',
+      ourPiadinas: 'Nos piadinas:',
     },
     about: {
       title: 'Notre Histoire',
@@ -191,6 +212,7 @@ export const translations: Record<Language, Translations> = {
     menu: {
       title: 'Notre Menu',
       allergens: 'Pour des informations détaillées sur les allergènes, veuillez contacter notre personnel.',
+      allergensButton: 'Info allergènes',
       doughOptions: 'Options de Pâte',
       doughOptionsSubtitle: 'Vous pouvez choisir parmi les types de pâte suivants:',
     },
@@ -210,6 +232,9 @@ export const translations: Record<Language, Translations> = {
     footer: {
       rights: 'Tous droits réservés',
       privacy: 'Politique de confidentialité',
+      whatsapp: 'WhatsApp',
+      uberEats: 'Uber Eats',
+      review: 'Avis',
     },
   },
 };

@@ -157,18 +157,18 @@ export default function Privacy() {
         </h1>
 
         <Card className="max-w-3xl mx-auto p-8 md:p-12">
-          <p className="text-lg mb-8 text-muted-foreground">{currentContent.intro}</p>
+          <p className="text-lg mb-8 text-foreground">{currentContent.intro}</p>
 
           <div className="space-y-8">
             {currentContent.sections.map((section, index) => (
               <div key={index}>
-                <h2 className="text-xl font-bold mb-3">{section.title}</h2>
-                <p className="text-muted-foreground whitespace-pre-line">{section.content}</p>
+                <h2 className="text-xl font-bold mb-3 text-foreground">{section.title}</h2>
+                <p className="text-foreground whitespace-pre-line">{section.content}</p>
               </div>
             ))}
           </div>
 
-          <p className="text-sm text-muted-foreground mt-12 pt-8 border-t border-border">
+          <p className="text-sm text-foreground mt-12 pt-8 border-t border-border">
             {currentContent.lastUpdated}
           </p>
         </Card>

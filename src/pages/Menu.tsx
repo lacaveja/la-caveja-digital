@@ -53,7 +53,7 @@ export default function Menu() {
                 <CollapsibleTrigger asChild>
                   <Button variant="outline" size="sm" className="text-xs">
                     <Info className="h-3 w-3 mr-2" />
-                    Info allergeni
+                    {t.menu.allergensButton}
                   </Button>
                 </CollapsibleTrigger>
                 <CollapsibleContent className="mt-4">
