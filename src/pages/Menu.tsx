@@ -5,21 +5,59 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Info } from 'lucide-react';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export default function Menu() {
   const { t, language } = useLanguage();
   const [isAllergensOpen, setIsAllergensOpen] = useState(false);
 
+  // Immagini del carosello sopra il menu
+  const menuImages = [
+    { src: '/IMG_0294.JPG', alt: 'Piadine La Caveja' },
+    { src: '/IMG_0307.JPG', alt: 'Piadine fresche' },
+    { src: '/IMG_0316.JPG', alt: 'Piadine con ingredienti' },
+    { src: '/Boscaiola.JPG', alt: 'Piadina Boscaiola' },
+    { src: '/Bresaola.JPG', alt: 'Piadina Bresaola' },
+    { src: '/Fior Di Piadina.JPG', alt: 'Fior di Piadina' },
+    { src: '/Prosciutto e Funghi.JPG', alt: 'Piadina Prosciutto e Funghi' },
+    { src: '/1711_3105.jpg', alt: 'Piadine La Caveja' },
+    { src: '/1711_3471.jpg', alt: 'Piadina La Caveja' },
+    { src: '/salame3.jpg', alt: 'Piadina con salame' },
+  ];
+
   return (
     <div className="min-h-screen py-16 md:py-24">
       <div className="container mx-auto px-4">
-        {/* Immagine piadina sopra il titolo */}
-        <div className="flex justify-center mb-6">
-          <img 
-            src="/piadina-hero.jpg" 
-            alt="Piadina La Caveja" 
-            className="max-w-md w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
-          />
+        {/* Carosello immagini sopra il titolo */}
+        <div className="mb-8 max-w-4xl mx-auto">
+          <Carousel className="w-full" opts={{ loop: true }}>
+            <CarouselContent>
+              {menuImages.map((image, index) => (
+                <CarouselItem key={index}>
+                  <div className="p-1">
+                    <Card className="overflow-hidden">
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-[250px] md:h-[300px] object-cover"
+                        onError={(e) => {
+                          e.currentTarget.src = '/placeholder.svg';
+                        }}
+                      />
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-2" />
+            <CarouselNext className="right-2" />
+          </Carousel>
         </div>
         
         <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 bg-gradient-primary bg-clip-text text-transparent">

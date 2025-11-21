@@ -144,6 +144,66 @@ export const menuCategories: MenuCategory[] = [
   },
   {
     title: {
+      it: 'LE BURGER',
+      en: 'THE BURGERS',
+      de: 'DIE BURGER',
+      fr: 'LES BURGERS',
+    },
+    items: [
+      {
+        name: 'Classic Burger',
+        price: '13,50 CHF',
+        description: {
+          it: 'Hamburger, fontina, insalata, salsa BBQ',
+          en: 'Burger patty, fontina cheese, lettuce, BBQ sauce',
+          de: 'Burger-Patty, Fontina-Käse, Salat, BBQ-Sauce',
+          fr: 'Steak haché, fromage fontina, salade, sauce BBQ',
+        },
+      },
+      {
+        name: 'Royal Burger',
+        price: '14,00 CHF',
+        description: {
+          it: 'Hamburger, gorgonzola, rucola, pomodorini, maionese',
+          en: 'Burger patty, gorgonzola, arugula, cherry tomatoes, mayonnaise',
+          de: 'Burger-Patty, Gorgonzola, Rucola, Kirschtomaten, Mayonnaise',
+          fr: 'Steak haché, gorgonzola, roquette, tomates cerises, mayonnaise',
+        },
+      },
+      {
+        name: 'Caveja Burger',
+        price: '14,50 CHF',
+        description: {
+          it: 'Hamburger, squacquerò, cipolla fritta, peperoni grigliati, pomodorini, salsa BBQ',
+          en: 'Burger patty, squacquerone cheese, fried onion, grilled peppers, cherry tomatoes, BBQ sauce',
+          de: 'Burger-Patty, Squacquerone-Käse, frittierte Zwiebel, gegrillte Paprika, Kirschtomaten, BBQ-Sauce',
+          fr: 'Steak haché, fromage squacquerone, oignon frit, poivrons grillés, tomates cerises, sauce BBQ',
+        },
+      },
+      {
+        name: 'Tirolese',
+        price: '15,90 CHF',
+        description: {
+          it: 'Hamburger, speck, brie, funghi, rucola, salsa BBQ',
+          en: 'Burger patty, speck, brie, mushrooms, arugula, BBQ sauce',
+          de: 'Burger-Patty, Speck, Brie, Pilze, Rucola, BBQ-Sauce',
+          fr: 'Steak haché, speck, brie, champignons, roquette, sauce BBQ',
+        },
+      },
+      {
+        name: 'American Burger',
+        price: '15,00 CHF',
+        description: {
+          it: 'Hamburger, bacon, fontina, cipolla fritta, pomodori, salsa burger',
+          en: 'Burger patty, bacon, fontina cheese, fried onion, tomatoes, burger sauce',
+          de: 'Burger-Patty, Bacon, Fontina-Käse, frittierte Zwiebel, Tomaten, Burger-Sauce',
+          fr: 'Steak haché, bacon, fromage fontina, oignon frit, tomates, sauce burger',
+        },
+      },
+    ],
+  },
+  {
+    title: {
       it: 'LE SPECIALI',
       en: 'THE SPECIALS',
       de: 'DIE SPEZIALITÄTEN',
@@ -448,66 +508,6 @@ export const menuCategories: MenuCategory[] = [
           en: 'Squacquerone cheese, eggplant, peppers, grilled zucchini',
           de: 'Squacquerone-Käse, Aubergine, Paprika, gegrillte Zucchini',
           fr: 'Fromage squacquerone, aubergines, poivrons, courgettes grillées',
-        },
-      },
-    ],
-  },
-  {
-    title: {
-      it: 'LE BURGER',
-      en: 'THE BURGERS',
-      de: 'DIE BURGER',
-      fr: 'LES BURGERS',
-    },
-    items: [
-      {
-        name: 'Classic Burger',
-        price: '13,50 CHF',
-        description: {
-          it: 'Hamburger, fontina, insalata, salsa BBQ',
-          en: 'Burger patty, fontina cheese, lettuce, BBQ sauce',
-          de: 'Burger-Patty, Fontina-Käse, Salat, BBQ-Sauce',
-          fr: 'Steak haché, fromage fontina, salade, sauce BBQ',
-        },
-      },
-      {
-        name: 'Royal Burger',
-        price: '14,00 CHF',
-        description: {
-          it: 'Hamburger, gorgonzola, rucola, pomodorini, maionese',
-          en: 'Burger patty, gorgonzola, arugula, cherry tomatoes, mayonnaise',
-          de: 'Burger-Patty, Gorgonzola, Rucola, Kirschtomaten, Mayonnaise',
-          fr: 'Steak haché, gorgonzola, roquette, tomates cerises, mayonnaise',
-        },
-      },
-      {
-        name: 'Caveja Burger',
-        price: '14,50 CHF',
-        description: {
-          it: 'Hamburger, squacquerò, cipolla fritta, peperoni grigliati, pomodorini, salsa BBQ',
-          en: 'Burger patty, squacquerone cheese, fried onion, grilled peppers, cherry tomatoes, BBQ sauce',
-          de: 'Burger-Patty, Squacquerone-Käse, frittierte Zwiebel, gegrillte Paprika, Kirschtomaten, BBQ-Sauce',
-          fr: 'Steak haché, fromage squacquerone, oignon frit, poivrons grillés, tomates cerises, sauce BBQ',
-        },
-      },
-      {
-        name: 'Tirolese',
-        price: '15,90 CHF',
-        description: {
-          it: 'Hamburger, speck, brie, funghi, rucola, salsa BBQ',
-          en: 'Burger patty, speck, brie, mushrooms, arugula, BBQ sauce',
-          de: 'Burger-Patty, Speck, Brie, Pilze, Rucola, BBQ-Sauce',
-          fr: 'Steak haché, speck, brie, champignons, roquette, sauce BBQ',
-        },
-      },
-      {
-        name: 'American Burger',
-        price: '15,00 CHF',
-        description: {
-          it: 'Hamburger, bacon, fontina, cipolla fritta, pomodori, salsa burger',
-          en: 'Burger patty, bacon, fontina cheese, fried onion, tomatoes, burger sauce',
-          de: 'Burger-Patty, Bacon, Fontina-Käse, frittierte Zwiebel, Tomaten, Burger-Sauce',
-          fr: 'Steak haché, bacon, fromage fontina, oignon frit, tomates, sauce burger',
         },
       },
     ],
