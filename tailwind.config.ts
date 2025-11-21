@@ -63,6 +63,9 @@ export default {
         strong: "var(--shadow-strong)",
         glow: "var(--shadow-glow)",
       },
+      fontFamily: {
+        logo: ['Satisfy', 'cursive'],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
