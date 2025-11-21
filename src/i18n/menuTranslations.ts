@@ -84,10 +84,10 @@ export const menuCategories: MenuCategory[] = [
         name: 'Crudo e Fichi',
         price: '13,00 CHF',
         description: {
-          it: 'Bresaola, grana, rucola, olio evo',
-          en: 'Bresaola, parmesan, arugula, extra virgin olive oil',
-          de: 'Bresaola, Parmesan, Rucola, natives Olivenöl extra',
-          fr: 'Bresaola, parmesan, roquette, huile d\'olive extra vierge',
+          it: 'Squacquerone, crudo e marmellata di fichi',
+          en: 'Squacquerone cheese, prosciutto crudo and fig jam',
+          de: 'Squacquerone-Käse, Rohschinken und Feigenmarmelade',
+          fr: 'Fromage squacquerone, jambon cru et confiture de figues',
         },
       },
       {
