@@ -17,7 +17,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 className="text-lg font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
-              Piadineria La Caveja
+              Piadineria La Caveja Viale Cattaneo Lugano
             </h3>
             <p className="text-sm text-muted-foreground">
               {t.home.slogan}
@@ -105,7 +105,7 @@ export const Footer = () => {
         </div>
 
         <div className="mt-8 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center text-sm">
-          <p className="text-foreground">© 2025 Piadineria La Caveja. {t.footer.rights}.</p>
+          <p className="text-foreground">© 2025 Piadineria La Caveja Viale Cattaneo Lugano. {t.footer.rights}.</p>
           <Link to="/privacy" className="text-foreground hover:text-primary transition-colors mt-2 md:mt-0 font-medium">
             {t.footer.privacy}
           </Link>

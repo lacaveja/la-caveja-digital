@@ -21,12 +21,22 @@ export default function Home() {
   const whatsappMessage = 'Ciao! Vorrei informazioni sulla Piadineria La Caveja.';
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
-  // Immagini del carosello
+  // Immagini del carosello - unificate da home e menu
   const carouselImages = [
     { src: '/piadina-1.jpg', alt: 'Piadina con noci, radicchio e formaggio' },
     { src: '/piadina-2.jpg', alt: 'Piadina con prosciutto, formaggio e rucola' },
     { src: '/piadina-3.jpg', alt: 'Piadina con pollo, lattuga e pomodori' },
     { src: '/piadina-4.jpg', alt: 'Piadina con bresaola e formaggio fresco' },
+    { src: '/IMG_0294.JPG', alt: 'Piadine La Caveja' },
+    { src: '/IMG_0307.JPG', alt: 'Piadine fresche' },
+    { src: '/IMG_0316.JPG', alt: 'Piadine con ingredienti' },
+    { src: '/Boscaiola.JPG', alt: 'Piadina Boscaiola' },
+    { src: '/Bresaola.JPG', alt: 'Piadina Bresaola' },
+    { src: '/Fior Di Piadina.JPG', alt: 'Fior di Piadina' },
+    { src: '/Prosciutto e Funghi.JPG', alt: 'Piadina Prosciutto e Funghi' },
+    { src: '/1711_3105.jpg', alt: 'Piadine La Caveja' },
+    { src: '/1711_3471.jpg', alt: 'Piadina La Caveja' },
+    { src: '/salame3.jpg', alt: 'Piadina con salame' },
   ];
 
   return (
@@ -69,29 +79,34 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-logo text-primary text-center mb-12">
             Le nostre piadine:
           </h2>
-          <Carousel className="max-w-4xl mx-auto">
-            <CarouselContent>
-              {carouselImages.map((image, index) => (
-                <CarouselItem key={index}>
-                  <div className="p-1">
-                    <Card className="overflow-hidden">
-                      <img
-                        src={image.src}
-                        alt={image.alt}
-                        className="w-full h-[400px] md:h-[500px] object-cover"
-                        onError={(e) => {
-                          e.currentTarget.src = '/placeholder.svg';
-                          e.currentTarget.alt = 'Immagine non disponibile';
-                        }}
-                      />
-                    </Card>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
+          <div className="max-w-4xl mx-auto relative">
+            <Carousel className="w-full" opts={{ loop: true }}>
+              <CarouselContent>
+                {carouselImages.map((image, index) => (
+                  <CarouselItem key={index}>
+                    <div className="p-1">
+                      <Card className="overflow-hidden">
+                        <img
+                          src={image.src}
+                          alt={image.alt}
+                          className="w-full h-[400px] md:h-[500px] object-cover"
+                          onError={(e) => {
+                            e.currentTarget.src = '/placeholder.svg';
+                            e.currentTarget.alt = 'Immagine non disponibile';
+                          }}
+                        />
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+            {/* Pulsanti di navigazione dentro il riquadro - overlay sopra tutto */}
+            <div className="absolute inset-0 flex items-center justify-between px-2 md:px-4 pointer-events-none z-10">
+              <CarouselPrevious className="!static !left-0 !top-auto !translate-x-0 !translate-y-0 pointer-events-auto h-10 w-10 md:h-12 md:w-12 border-2 bg-background/90 hover:bg-background shadow-lg rounded-full" />
+              <CarouselNext className="!static !right-0 !top-auto !translate-x-0 !translate-y-0 pointer-events-auto h-10 w-10 md:h-12 md:w-12 border-2 bg-background/90 hover:bg-background shadow-lg rounded-full" />
+            </div>
+          </div>
         </div>
       </section>
 
