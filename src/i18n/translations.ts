@@ -21,6 +21,8 @@ export interface Translations {
   menu: {
     title: string;
     allergens: string;
+    doughOptions: string;
+    doughOptionsSubtitle: string;
   };
   contacts: {
     title: string;
@@ -63,6 +65,8 @@ export const translations: Record<Language, Translations> = {
     menu: {
       title: 'Il Nostro Menu',
       allergens: 'Per informazioni dettagliate sugli allergeni, si prega di rivolgersi al personale della Piadineria.',
+      doughOptions: 'Opzioni Impasto',
+      doughOptionsSubtitle: 'Puoi scegliere tra i seguenti tipi di impasto:',
     },
     contacts: {
       title: 'Contattaci',
@@ -103,6 +107,8 @@ export const translations: Record<Language, Translations> = {
     menu: {
       title: 'Our Menu',
       allergens: 'For detailed allergen information, please contact our staff.',
+      doughOptions: 'Dough Options',
+      doughOptionsSubtitle: 'You can choose from the following dough types:',
     },
     contacts: {
       title: 'Contact Us',
@@ -143,6 +149,8 @@ export const translations: Record<Language, Translations> = {
     menu: {
       title: 'Unser Menü',
       allergens: 'Für detaillierte Allergeninformationen wenden Sie sich bitte an unser Personal.',
+      doughOptions: 'Teigoptionen',
+      doughOptionsSubtitle: 'Sie können zwischen folgenden Teigsorten wählen:',
     },
     contacts: {
       title: 'Kontaktieren Sie uns',
@@ -183,6 +191,8 @@ export const translations: Record<Language, Translations> = {
     menu: {
       title: 'Notre Menu',
       allergens: 'Pour des informations détaillées sur les allergènes, veuillez contacter notre personnel.',
+      doughOptions: 'Options de Pâte',
+      doughOptionsSubtitle: 'Vous pouvez choisir parmi les types de pâte suivants:',
     },
     contacts: {
       title: 'Contactez-nous',

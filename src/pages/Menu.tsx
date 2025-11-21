@@ -64,21 +64,53 @@ export default function Menu() {
           {t.menu.title}
         </h1>
 
-        {/* Pulsante collapsible per info allergeni */}
-        <div className="mb-12 max-w-3xl mx-auto flex justify-center">
-          <Collapsible open={isAllergensOpen} onOpenChange={setIsAllergensOpen}>
-            <CollapsibleTrigger asChild>
-              <Button variant="outline" size="sm" className="text-xs">
-                <Info className="h-3 w-3 mr-2" />
-                Info allergeni
-              </Button>
-            </CollapsibleTrigger>
-            <CollapsibleContent className="mt-4">
-              <Card className="p-4 bg-muted/50">
-                <p className="text-sm text-muted-foreground">{t.menu.allergens}</p>
-              </Card>
-            </CollapsibleContent>
-          </Collapsible>
+        {/* Opzioni Impasto */}
+        <div className="mb-8 max-w-4xl mx-auto">
+          <Card className="p-6 bg-primary/5 border-primary/20">
+            <h3 className="text-xl font-bold text-center mb-2 text-primary">
+              {t.menu.doughOptions}
+            </h3>
+            <p className="text-sm text-center text-muted-foreground mb-4">
+              {t.menu.doughOptionsSubtitle}
+            </p>
+            <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-4">
+              <span className="px-3 py-1.5 bg-background border border-border rounded-full text-sm font-medium">
+                Classico
+              </span>
+              <span className="px-3 py-1.5 bg-background border border-border rounded-full text-sm font-medium">
+                8 Cereali
+              </span>
+              <span className="px-3 py-1.5 bg-background border border-border rounded-full text-sm font-medium">
+                Senza Glutine
+              </span>
+              <span className="px-3 py-1.5 bg-background border border-border rounded-full text-sm font-medium">
+                Khorasan
+              </span>
+              <span className="px-3 py-1.5 bg-background border border-border rounded-full text-sm font-medium">
+                Farro
+              </span>
+              <span className="px-3 py-1.5 bg-background border border-border rounded-full text-sm font-medium">
+                Patate e Curcuma
+              </span>
+            </div>
+            
+            {/* Pulsante collapsible per info allergeni dentro il riquadro */}
+            <div className="flex justify-center pt-4 border-t border-border/50">
+              <Collapsible open={isAllergensOpen} onOpenChange={setIsAllergensOpen}>
+                <CollapsibleTrigger asChild>
+                  <Button variant="outline" size="sm" className="text-xs">
+                    <Info className="h-3 w-3 mr-2" />
+                    Info allergeni
+                  </Button>
+                </CollapsibleTrigger>
+                <CollapsibleContent className="mt-4">
+                  <Card className="p-4 bg-muted/50">
+                    <p className="text-sm text-muted-foreground">{t.menu.allergens}</p>
+                  </Card>
+                </CollapsibleContent>
+              </Collapsible>
+            </div>
+          </Card>
         </div>
 
         <div className="space-y-16">
