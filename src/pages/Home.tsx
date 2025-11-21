@@ -80,12 +80,12 @@ export default function Home() {
             Le nostre piadine:
           </h2>
           <div className="max-w-4xl mx-auto relative">
-            <Carousel className="w-full" opts={{ loop: true }}>
+            <Carousel className="w-full relative" opts={{ loop: true }}>
               <CarouselContent>
                 {carouselImages.map((image, index) => (
                   <CarouselItem key={index}>
                     <div className="p-1">
-                      <Card className="overflow-hidden">
+                      <Card className="overflow-hidden relative">
                         <img
                           src={image.src}
                           alt={image.alt}
@@ -100,12 +100,10 @@ export default function Home() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
+              {/* Pulsanti di navigazione dentro il riquadro */}
+              <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 h-10 w-10 md:h-12 md:w-12 border-2 bg-background/90 hover:bg-background shadow-lg rounded-full z-20" />
+              <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 h-10 w-10 md:h-12 md:w-12 border-2 bg-background/90 hover:bg-background shadow-lg rounded-full z-20" />
             </Carousel>
-            {/* Pulsanti di navigazione dentro il riquadro - overlay sopra tutto */}
-            <div className="absolute inset-0 flex items-center justify-between px-2 md:px-4 pointer-events-none z-10">
-              <CarouselPrevious className="!static !left-0 !top-auto !translate-x-0 !translate-y-0 pointer-events-auto h-10 w-10 md:h-12 md:w-12 border-2 bg-background/90 hover:bg-background shadow-lg rounded-full" />
-              <CarouselNext className="!static !right-0 !top-auto !translate-x-0 !translate-y-0 pointer-events-auto h-10 w-10 md:h-12 md:w-12 border-2 bg-background/90 hover:bg-background shadow-lg rounded-full" />
-            </div>
           </div>
         </div>
       </section>
