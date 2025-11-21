@@ -4,6 +4,7 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { LanguageSwitch } from './LanguageSwitch';
 import { useLanguage } from '@/contexts/LanguageContext';
+import logoCaveja from '@/assets/logo-caveja.png';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,10 +21,8 @@ export const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <nav className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link to="/" className="flex items-center space-x-2">
-          <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-            La Caveja
-          </span>
+        <Link to="/" className="flex items-center">
+          <img src={logoCaveja} alt="La Caveja" className="h-12 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}
