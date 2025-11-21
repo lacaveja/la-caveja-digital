@@ -1,73 +1,80 @@
-# Welcome to your Lovable project
+# Piadineria La Caveja - Sito Web
 
-## Project info
+Sito web ufficiale della Piadineria La Caveja di Lugano.
 
-**URL**: https://lovable.dev/projects/1c9bfb4d-d467-4b0c-8d2a-0c75fe29781b
+## Informazioni del Progetto
 
-## How can I edit this code?
+Piadineria La Caveja porta a Lugano la vera piadina romagnola: fresca, generosa e preparata al momento.
 
-There are several ways of editing your application.
+**Indirizzo**: Viale Carlo Cattaneo 15, 6900 Lugano, Svizzera  
+**Telefono**: +41 79 765 13 81
 
-**Use Lovable**
+## Tecnologie Utilizzate
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1c9bfb4d-d467-4b0c-8d2a-0c75fe29781b) and start prompting.
+Questo progetto è realizzato con:
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Vite** - Build tool e dev server
+- **React** - Libreria UI
+- **TypeScript** - Tipizzazione statica
+- **Tailwind CSS** - Framework CSS utility-first
+- **shadcn/ui** - Componenti UI
+- **React Router** - Routing
 
-**Use your preferred IDE**
+## Installazione e Sviluppo
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Requisiti
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Node.js (versione 18 o superiore)
+- npm o yarn
 
-Follow these steps:
+### Setup
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1. Clona il repository:
+```bash
+git clone <URL_DEL_REPOSITORY>
+cd la-caveja-digital
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2. Installa le dipendenze:
+```bash
+npm install
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Avvia il server di sviluppo:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Il sito sarà disponibile su `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Script Disponibili
 
-**Use GitHub Codespaces**
+- `npm run dev` - Avvia il server di sviluppo
+- `npm run build` - Crea la build di produzione
+- `npm run preview` - Anteprima della build di produzione
+- `npm run lint` - Esegue il linter
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Deploy
 
-## What technologies are used for this project?
+Il progetto è già configurato per il deploy su **Vercel** o **Netlify**.
 
-This project is built with:
+### 🚀 Deploy Rapido con Vercel (2 minuti):
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+**Opzione 1 - Tramite CLI (più veloce):**
+```bash
+npm install -g vercel
+vercel
+```
 
-## How can I deploy this project?
+**Opzione 2 - Tramite GitHub:**
+1. Pusha il codice su GitHub
+2. Vai su [vercel.com](https://vercel.com) e importa il repository
+3. Vercel rileva automaticamente le impostazioni - clicca "Deploy"
 
-Simply open [Lovable](https://lovable.dev/projects/1c9bfb4d-d467-4b0c-8d2a-0c75fe29781b) and click on Share -> Publish.
+Il sito sarà online in 2 minuti con un link provvisorio tipo: `https://la-caveja-digital-abc123.vercel.app`
 
-## Can I connect a custom domain to my Lovable project?
+📖 **Per istruzioni dettagliate, vedi [DEPLOY.md](./DEPLOY.md)**
 
-Yes, you can!
+## Licenza
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+© 2025 Piadineria La Caveja. Tutti i diritti riservati.

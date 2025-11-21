@@ -1,23 +1,47 @@
+import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { menuCategories } from '@/i18n/menuTranslations';
 import { Card } from '@/components/ui/card';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Info } from 'lucide-react';
 
 export default function Menu() {
   const { t, language } = useLanguage();
+  const [isAllergensOpen, setIsAllergensOpen] = useState(false);
 
   return (
     <div className="min-h-screen py-16 md:py-24">
       <div className="container mx-auto px-4">
+        {/* Immagine piadina sopra il titolo */}
+        <div className="flex justify-center mb-6">
+          <img 
+            src="/piadina-hero.jpg" 
+            alt="Piadina La Caveja" 
+            className="max-w-md w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
+          />
+        </div>
+        
         <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 bg-gradient-primary bg-clip-text text-transparent">
           {t.menu.title}
         </h1>
 
-        <Alert className="mb-12 max-w-3xl mx-auto">
-          <Info className="h-4 w-4" />
-          <AlertDescription>{t.menu.allergens}</AlertDescription>
-        </Alert>
+        {/* Pulsante collapsible per info allergeni */}
+        <div className="mb-12 max-w-3xl mx-auto flex justify-center">
+          <Collapsible open={isAllergensOpen} onOpenChange={setIsAllergensOpen}>
+            <CollapsibleTrigger asChild>
+              <Button variant="outline" size="sm" className="text-xs">
+                <Info className="h-3 w-3 mr-2" />
+                Info allergeni
+              </Button>
+            </CollapsibleTrigger>
+            <CollapsibleContent className="mt-4">
+              <Card className="p-4 bg-muted/50">
+                <p className="text-sm text-muted-foreground">{t.menu.allergens}</p>
+              </Card>
+            </CollapsibleContent>
+          </Collapsible>
+        </div>
 
         <div className="space-y-16">
           {menuCategories.map((category, categoryIndex) => (
