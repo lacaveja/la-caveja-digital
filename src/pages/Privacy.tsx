@@ -7,7 +7,7 @@ export default function Privacy() {
   const content = {
     it: {
       title: 'Privacy Policy',
-      intro: 'Piadineria La Caveja Viale Cattaneo Lugano rispetta la privacy dei suoi visitatori e si impegna a proteggere le informazioni personali in conformità con la legislazione svizzera sulla protezione dei dati.',
+      intro: 'Piadineria La Caveja Lugano Viale Cattaneo rispetta la privacy dei suoi visitatori e si impegna a proteggere le informazioni personali in conformità con la legislazione svizzera sulla protezione dei dati.',
       sections: [
         {
           title: '1. Raccolta Dati',
@@ -35,14 +35,14 @@ export default function Privacy() {
         },
         {
           title: '7. Contatti',
-          content: 'Per domande sulla nostra privacy policy, contattaci:\nPiadineria La Caveja Viale Cattaneo Lugano\nViale Carlo Cattaneo 15, 6900 Lugano\nEmail: luganolacaveja@gmail.com\nTelefono: +41 79 765 13 81',
+          content: 'Per domande sulla nostra privacy policy, contattaci:\nPiadineria La Caveja Lugano Viale Cattaneo\nViale Carlo Cattaneo 15, 6900 Lugano\nEmail: luganolacaveja@gmail.com\nTelefono: +41 79 765 13 81',
         },
       ],
       lastUpdated: 'Ultimo aggiornamento: Gennaio 2025',
     },
     en: {
       title: 'Privacy Policy',
-      intro: 'Piadineria La Caveja Viale Cattaneo Lugano respects the privacy of its visitors and is committed to protecting personal information in accordance with Swiss data protection legislation.',
+      intro: 'Piadineria La Caveja Lugano Viale Cattaneo respects the privacy of its visitors and is committed to protecting personal information in accordance with Swiss data protection legislation.',
       sections: [
         {
           title: '1. Data Collection',
@@ -70,14 +70,14 @@ export default function Privacy() {
         },
         {
           title: '7. Contact',
-          content: 'For questions about our privacy policy, contact us:\nPiadineria La Caveja Viale Cattaneo Lugano\nViale Carlo Cattaneo 15, 6900 Lugano\nEmail: luganolacaveja@gmail.com\nPhone: +41 79 765 13 81',
+          content: 'For questions about our privacy policy, contact us:\nPiadineria La Caveja Lugano Viale Cattaneo\nViale Carlo Cattaneo 15, 6900 Lugano\nEmail: luganolacaveja@gmail.com\nPhone: +41 79 765 13 81',
         },
       ],
       lastUpdated: 'Last updated: January 2025',
     },
     de: {
       title: 'Datenschutz',
-      intro: 'Piadineria La Caveja Viale Cattaneo Lugano respektiert die Privatsphäre seiner Besucher und verpflichtet sich, persönliche Informationen gemäß dem Schweizer Datenschutzgesetz zu schützen.',
+      intro: 'Piadineria La Caveja Lugano Viale Cattaneo respektiert die Privatsphäre seiner Besucher und verpflichtet sich, persönliche Informationen gemäß dem Schweizer Datenschutzgesetz zu schützen.',
       sections: [
         {
           title: '1. Datenerfassung',
@@ -105,14 +105,14 @@ export default function Privacy() {
         },
         {
           title: '7. Kontakt',
-          content: 'Bei Fragen zu unserer Datenschutzrichtlinie kontaktieren Sie uns:\nPiadineria La Caveja Viale Cattaneo Lugano\nViale Carlo Cattaneo 15, 6900 Lugano\nE-Mail: luganolacaveja@gmail.com\nTelefon: +41 79 765 13 81',
+          content: 'Bei Fragen zu unserer Datenschutzrichtlinie kontaktieren Sie uns:\nPiadineria La Caveja Lugano Viale Cattaneo\nViale Carlo Cattaneo 15, 6900 Lugano\nE-Mail: luganolacaveja@gmail.com\nTelefon: +41 79 765 13 81',
         },
       ],
       lastUpdated: 'Letzte Aktualisierung: Januar 2025',
     },
     fr: {
       title: 'Politique de Confidentialité',
-      intro: 'Piadineria La Caveja Viale Cattaneo Lugano respecte la vie privée de ses visiteurs et s\'engage à protéger les informations personnelles conformément à la législation suisse sur la protection des données.',
+      intro: 'Piadineria La Caveja Lugano Viale Cattaneo respecte la vie privée de ses visiteurs et s\'engage à protéger les informations personnelles conformément à la législation suisse sur la protection des données.',
       sections: [
         {
           title: '1. Collecte de Données',
@@ -140,7 +140,7 @@ export default function Privacy() {
         },
         {
           title: '7. Contact',
-          content: 'Pour des questions sur notre politique de confidentialité, contactez-nous:\nPiadineria La Caveja Viale Cattaneo Lugano\nViale Carlo Cattaneo 15, 6900 Lugano\nEmail: luganolacaveja@gmail.com\nTéléphone: +41 79 765 13 81',
+          content: 'Pour des questions sur notre politique de confidentialité, contactez-nous:\nPiadineria La Caveja Lugano Viale Cattaneo\nViale Carlo Cattaneo 15, 6900 Lugano\nEmail: luganolacaveja@gmail.com\nTéléphone: +41 79 765 13 81',
         },
       ],
       lastUpdated: 'Dernière mise à jour: Janvier 2025',

@@ -14,7 +14,7 @@ export const LanguageSwitch = () => {
   const { language, setLanguage } = useLanguage();
 
   return (
-    <div className="flex items-center space-x-1">
+    <div className="flex items-center space-x-0.5 md:space-x-1">
       {languages.map((lang) => (
         <Button
           key={lang.code}
@@ -22,7 +22,7 @@ export const LanguageSwitch = () => {
           size="sm"
           onClick={() => setLanguage(lang.code)}
           className={cn(
-            "px-2 py-1 text-lg hover:bg-accent transition-colors",
+            "px-1 py-0.5 md:px-2 md:py-1 text-sm md:text-lg hover:bg-accent transition-colors min-w-0",
             language === lang.code ? 'bg-accent' : ''
           )}
           aria-label={lang.label}

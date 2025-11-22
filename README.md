@@ -1,6 +1,6 @@
-# Piadineria La Caveja Viale Cattaneo Lugano - Sito Web
+# Piadineria La Caveja Lugano Viale Cattaneo - Sito Web
 
-Sito web ufficiale della Piadineria La Caveja Viale Cattaneo Lugano.
+Sito web ufficiale della Piadineria La Caveja Lugano Viale Cattaneo.
 
 ## Informazioni del Progetto
 
@@ -77,4 +77,4 @@ Il sito sarà online in 2 minuti con un link provvisorio tipo: `https://la-cavej
 
 ## Licenza
 
-© 2025 Piadineria La Caveja Viale Cattaneo Lugano. Tutti i diritti riservati.
+© 2025 Piadineria La Caveja Lugano Viale Cattaneo. Tutti i diritti riservati.
