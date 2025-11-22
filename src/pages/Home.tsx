@@ -68,7 +68,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative text-primary-foreground py-20 md:py-30 lg:py-40 overflow-hidden min-h-[380px] md:min-h-[510px] lg:min-h-[640px]">
+      <section className="relative text-primary-foreground overflow-hidden min-h-[380px] md:min-h-[510px] lg:min-h-[640px] flex items-center justify-center">
         {/* Background Images Slideshow */}
         <div className="absolute inset-0">
           {backgroundImages.map((img, index) => (
@@ -88,23 +88,29 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+        <div className="container mx-auto px-4 text-center relative z-10 py-20 md:py-30 lg:py-40">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] text-center">
             {t.home.slogan}
           </h1>
-          <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90 drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]">
-            {t.home.description}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild variant="secondary" className="text-lg">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+            <Button size="sm" asChild variant="secondary" className="text-xs sm:text-lg w-auto px-4 sm:px-8">
               <Link to="/menu">{t.home.viewMenu}</Link>
             </Button>
-            <Button size="lg" asChild className="bg-accent hover:bg-accent/90 text-lg">
+            <Button size="sm" asChild className="bg-accent hover:bg-accent/90 text-xs sm:text-lg w-auto px-4 sm:px-8">
               <a href={uberEatsUrl} target="_blank" rel="noopener noreferrer">
                 {t.home.orderNow}
               </a>
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Description Section */}
+      <section className="py-8 md:py-12 bg-background">
+        <div className="container mx-auto px-4">
+          <p className="text-lg md:text-xl mb-0 max-w-2xl mx-auto text-center text-foreground">
+            {t.home.description}
+          </p>
         </div>
       </section>
 
@@ -127,7 +133,7 @@ export default function Home() {
                         <img
                           src={image.src}
                           alt={image.alt}
-                          className="w-full h-[680px] md:h-[1020px] lg:h-[1180px] object-cover"
+                          className="w-full h-[400px] md:h-[500px] object-cover"
                           onError={(e) => {
                             e.currentTarget.src = '/placeholder.svg';
                             e.currentTarget.alt = 'Immagine non disponibile';
