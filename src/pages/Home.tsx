@@ -44,13 +44,13 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative text-primary-foreground py-20 md:py-32 overflow-hidden" style={{ background: 'var(--hero-pattern)' }}>
         {/* Bagliore bianco al centro - più intenso */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          {/* Bagliore esterno più ampio e leggero */}
-          <div className="absolute w-[600px] h-[600px] md:w-[900px] md:h-[900px] bg-white/15 rounded-full blur-3xl" />
-          {/* Bagliore interno più intenso e concentrato */}
-          <div className="absolute w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-white/25 rounded-full blur-2xl" />
-          {/* Bagliore centrale più intenso */}
-          <div className="absolute w-[250px] h-[250px] md:w-[350px] md:h-[350px] bg-white/35 rounded-full blur-xl" />
+        <div className="absolute inset-0 flex justify-center pointer-events-none" style={{ top: '0%', left: '50%', transform: 'translateX(-50%)' }}>
+          <div className="relative">
+            {/* Bagliore esterno più ampio e leggero */}
+            <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[600px] h-[600px] md:w-[900px] md:h-[900px] bg-white/15 rounded-full blur-3xl" />
+            {/* Bagliore interno più intenso e concentrato */}
+            <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-white/25 rounded-full blur-2xl" />
+          </div>
         </div>
         <div className="container mx-auto px-4 text-center relative z-10">
           <img src={logoCaveja} alt="La Caveja Logo" className="h-32 md:h-44 lg:h-52 w-auto mx-auto mb-8 relative z-10" />
