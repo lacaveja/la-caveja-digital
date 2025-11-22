@@ -14,7 +14,10 @@ export const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <nav className="container mx-auto flex h-14 md:h-16 items-center justify-between px-3 md:px-4">
         <Link to="/" className="flex items-center flex-shrink-0">
-          <span className="text-sm md:text-3xl font-logo font-bold text-primary leading-tight">La Caveja Lugano Viale Cattaneo</span>
+          <span className="text-sm md:text-3xl font-logo font-bold text-primary leading-tight">
+            <span className="block md:inline">La Caveja Lugano</span>
+            <span className="block md:inline md:ml-1">Viale Cattaneo</span>
+          </span>
         </Link>
 
         {/* Navigation - sempre visibile su mobile e desktop */}
