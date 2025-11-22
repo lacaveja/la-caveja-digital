@@ -48,7 +48,7 @@ export const CookieBanner = () => {
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-sm flex-1">{text[language].message}</p>
         <div className="flex gap-3">
-          <Button variant="outline" size="sm" asChild>
+          <Button variant="outline" size="sm" asChild className="text-foreground border-foreground/20 hover:text-foreground hover:bg-accent">
             <a href="/privacy">{text[language].privacy}</a>
           </Button>
           <Button size="sm" onClick={handleAccept}>
