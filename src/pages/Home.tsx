@@ -10,6 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useState, useEffect } from 'react';
 import logoCaveja from '@/assets/logo-caveja.png';
 
 export default function Home() {
@@ -20,6 +21,31 @@ export default function Home() {
   const whatsappNumber = '+41797651381';
   const whatsappMessage = 'Ciao! Vorrei informazioni sulla Piadineria La Caveja.';
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+  // Immagini per lo sfondo hero con slideshow
+  const backgroundImages = [
+    '/IMG_0294.JPG',
+    '/IMG_0307.JPG',
+    '/IMG_0316.JPG',
+    '/Boscaiola.JPG',
+    '/Bresaola.JPG',
+    '/Fior Di Piadina.JPG',
+    '/Prosciutto e Funghi.JPG',
+    '/1711_3105.jpg',
+    '/1711_3471.jpg',
+    '/salame3.jpg',
+    '/nutella..JPG',
+  ];
+
+  const [currentBgIndex, setCurrentBgIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBgIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
+    }, 3000); // 3 secondi
+
+    return () => clearInterval(interval);
+  }, [backgroundImages.length]);
 
   // Immagini del carosello - unificate da home e menu
   const carouselImages = [
@@ -42,22 +68,31 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative text-primary-foreground py-20 md:py-32 overflow-hidden" style={{ background: 'var(--hero-pattern)' }}>
-        {/* Bagliore bianco al centro - più intenso */}
-        <div className="absolute inset-0 flex justify-center pointer-events-none" style={{ top: '0%', left: '50%', transform: 'translateX(-50%)' }}>
-          <div className="relative">
-            {/* Bagliore esterno più ampio e leggero */}
-            <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[600px] h-[600px] md:w-[900px] md:h-[900px] bg-white/15 rounded-full blur-3xl" />
-            {/* Bagliore interno più intenso e concentrato */}
-            <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-white/25 rounded-full blur-2xl" />
-          </div>
+      <section className="relative text-primary-foreground py-20 md:py-30 lg:py-40 overflow-hidden min-h-[380px] md:min-h-[510px] lg:min-h-[640px]">
+        {/* Background Images Slideshow */}
+        <div className="absolute inset-0">
+          {backgroundImages.map((img, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-[3000ms] ease-in-out ${
+                index === currentBgIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              <img
+                src={img}
+                alt={`Background ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+              {/* Overlay scuro per migliorare leggibilità del testo */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/20 to-black/25" />
+            </div>
+          ))}
         </div>
         <div className="container mx-auto px-4 text-center relative z-10">
-          <img src={logoCaveja} alt="La Caveja Logo" className="h-32 md:h-44 lg:h-52 w-auto mx-auto mb-8 relative z-10" />
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
             {t.home.slogan}
           </h1>
-          <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
+          <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90 drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]">
             {t.home.description}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -74,11 +109,14 @@ export default function Home() {
       </section>
 
       {/* Image Carousel */}
-      <section className="py-16 md:py-24 bg-muted/50">
+      <section className="pt-8 pb-16 md:pt-12 md:pb-24 bg-muted/50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-logo text-primary text-center mb-12">
-            {t.home.ourPiadinas}
-          </h2>
+          <div className="flex flex-col items-center mb-8">
+            <img src={logoCaveja} alt="La Caveja Logo" className="h-24 md:h-32 lg:h-40 w-auto mb-4" />
+            <h2 className="text-3xl md:text-4xl font-logo text-primary text-center mb-12">
+              {t.home.ourPiadinas}
+            </h2>
+          </div>
           <div className="max-w-4xl mx-auto relative">
             <Carousel className="w-full relative" opts={{ loop: true }}>
               <CarouselContent>
@@ -89,7 +127,7 @@ export default function Home() {
                         <img
                           src={image.src}
                           alt={image.alt}
-                          className="w-full h-[400px] md:h-[500px] object-cover"
+                          className="w-full h-[680px] md:h-[1020px] lg:h-[1180px] object-cover"
                           onError={(e) => {
                             e.currentTarget.src = '/placeholder.svg';
                             e.currentTarget.alt = 'Immagine non disponibile';
