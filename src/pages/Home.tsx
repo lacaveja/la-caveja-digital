@@ -39,6 +39,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useState, useEffect, useRef } from 'react';
+import Autoplay from 'embla-carousel-autoplay';
 import logoCaveja from '@/assets/logo-caveja.png';
 
 // Componente per Google Maps con Store Locator
@@ -387,7 +388,16 @@ export default function Home() {
             </h2>
           </div>
           <div className="max-w-4xl mx-auto relative">
-            <Carousel className="w-full relative" opts={{ loop: true }}>
+            <Carousel 
+              className="w-full relative" 
+              opts={{ loop: true }}
+              plugins={[
+                Autoplay({
+                  delay: 7000,
+                  stopOnInteraction: false,
+                }),
+              ]}
+            >
               <CarouselContent>
                 {carouselImages.map((image, index) => (
                   <CarouselItem key={index}>
@@ -397,6 +407,9 @@ export default function Home() {
                           src={image.src}
                           alt={image.alt}
                           className="w-full h-[400px] md:h-[500px] object-cover"
+                          loading={index === 0 ? "eager" : "lazy"}
+                          decoding="async"
+                          fetchPriority={index === 0 ? "high" : "low"}
                           onError={(e) => {
                             e.currentTarget.src = '/placeholder.svg';
                             e.currentTarget.alt = 'Immagine non disponibile';
