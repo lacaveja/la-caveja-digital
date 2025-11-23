@@ -1,6 +1,6 @@
 # Guida al Deploy - Link Provvisorio Online
 
-Questo progetto è configurato per essere deployato facilmente su **Vercel** (raccomandato) o **Netlify**.
+Questo progetto è configurato per essere deployato facilmente su **Netlify**.
 
 ## 🚀 Opzione 1: Netlify (CONSIGLIATO - 2 minuti) - Login solo con GitHub, no SMS!
 
@@ -31,57 +31,6 @@ Questo progetto è configurato per essere deployato facilmente su **Vercel** (ra
 - ✅ Gratuito per progetti personali
 - ✅ Link provvisorio in 2 minuti
 - ✅ Deploy automatico ad ogni push su GitHub
-- ✅ HTTPS automatico
-- ✅ CDN globale incluso
-- ✅ Preview deployments per ogni commit
-
----
-
-## 🌐 Opzione 2: Vercel (Richiede SMS)
-
-### Metodo A: Deploy tramite GitHub (Automatico)
-
-1. **Crea un repository su GitHub:**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin <URL_DEL_TUO_REPOSITORY_GITHUB>
-   git push -u origin main
-   ```
-
-2. **Vai su [vercel.com](https://vercel.com)** e crea un account gratuito (puoi usare GitHub)
-
-3. **Clicca su "Add New Project"** → Seleziona il tuo repository
-
-4. **Vercel rileva automaticamente le impostazioni**, quindi clicca semplicemente su **"Deploy"**
-
-5. **Fatto!** Il tuo sito sarà online in ~2 minuti con un link tipo: `https://la-caveja-digital-abc123.vercel.app`
-
-### Metodo B: Deploy tramite Vercel CLI (Più veloce, senza GitHub)
-
-1. **Installa Vercel CLI:**
-   ```bash
-   npm install -g vercel
-   ```
-
-2. **Nel progetto, esegui:**
-   ```bash
-   vercel
-   ```
-
-3. **Segui le istruzioni:**
-   - Se è la prima volta, ti chiederà di fare login
-   - Conferma le impostazioni (già configurate nel file `vercel.json`)
-   - Premi Invio per accettare
-
-4. **Fatto!** Otterrai un link provvisorio immediato
-
-### ✅ Vantaggi di Vercel:
-- ✅ Gratuito per progetti personali
-- ✅ Link provvisorio in 2 minuti
-- ✅ Deploy automatico ad ogni push su GitHub (se usi Metodo A)
 - ✅ HTTPS automatico
 - ✅ CDN globale incluso
 - ✅ Preview deployments per ogni commit
@@ -135,16 +84,25 @@ Questo progetto è configurato per essere deployato facilmente su **Vercel** (ra
    ```
    Se ci sono errori, risolvili prima del deploy.
 
-2. **Verifica che tutte le immagini siano nella cartella `public/`** (sono già lì ✅)
+2. **Configura le variabili d'ambiente:**
+   
+   **Per Netlify:**
+   - Vai su "Site settings" → "Environment variables"
+   - Aggiungi: `VITE_GOOGLE_MAPS_API_KEY` con il valore della tua Google Maps API key
+   - Assicurati di selezionare tutti gli ambienti (Production, Deploy previews, Branch deploys)
+   
+   **Importante:** Le variabili d'ambiente devono essere configurate PRIMA del primo deploy, altrimenti la mappa non funzionerà.
 
-3. **Quando il sito è online, aggiorna gli URL nel `sitemap.xml` e `robots.txt`:**
-   - Cambia `https://lacaveja.ch` con l'URL effettivo che riceverai (es. `https://la-caveja-digital.vercel.app`)
+3. **Verifica che tutte le immagini siano nella cartella `public/`** (sono già lì ✅)
+
+4. **Quando il sito è online, aggiorna gli URL nel `sitemap.xml` e `robots.txt`:**
+   - Cambia `https://lacaveja.ch` con l'URL effettivo che riceverai (es. `https://la-caveja-digital.netlify.app`)
    - Oppure, quando avrai il dominio finale, usa quello
 
 ### Dopo il deploy:
 
 - Il link provvisorio sarà disponibile immediatamente
-- Se usi GitHub + Vercel, ogni push farà un nuovo deploy automatico
+- Se usi GitHub + Netlify, ogni push farà un nuovo deploy automatico
 - Puoi aggiungere un dominio personalizzato in seguito nelle impostazioni del progetto
 
 ---
@@ -192,9 +150,8 @@ Surge è estremamente semplice e veloce. **Non richiede SMS o login complessi!**
 
 ## 🎯 Quale scegliere?
 
-- **Netlify**: Se vuoi deploy automatico da GitHub, NO SMS! (CONSIGLIATO ora)
+- **Netlify**: Se vuoi deploy automatico da GitHub, NO SMS! (CONSIGLIATO)
 - **Surge.sh**: Se vuoi il metodo più veloce possibile, senza complessità (30 secondi)
-- **Vercel**: Richiede SMS per la verifica
 
-**Tutte sono gratuite e offrono link provvisori immediati!**
+**Entrambe sono gratuite e offrono link provvisori immediati!**
 
