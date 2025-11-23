@@ -89,7 +89,11 @@ const GoogleMapComponent = () => {
         const apiLoader = document.createElement('gmpx-api-loader');
         const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
         if (!apiKey) {
-          throw new Error('Google Maps API key is not configured. Please set VITE_GOOGLE_MAPS_API_KEY in your .env file.');
+          console.error('VITE_GOOGLE_MAPS_API_KEY is not configured');
+          if (isMounted) {
+            setError('La mappa non è configurata correttamente. Contatta l\'amministratore.');
+          }
+          return;
         }
         apiLoader.setAttribute('key', apiKey);
         apiLoader.setAttribute('solution-channel', 'GMP_QB_locatorplus_v11_cABDF');
@@ -159,7 +163,10 @@ const GoogleMapComponent = () => {
             "maxZoom": 17,
             "mapId": "DEMO_MAP_ID"
           },
-          "mapsApiKey": import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "",
+          "mapsApiKey": import.meta.env.VITE_GOOGLE_MAPS_API_KEY || (() => {
+            console.error('VITE_GOOGLE_MAPS_API_KEY is missing in CONFIGURATION');
+            return "";
+          })(),
           "capabilities": {
             "input": false,
             "autocomplete": false,

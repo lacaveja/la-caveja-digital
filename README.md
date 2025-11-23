@@ -98,6 +98,8 @@ Il progetto utilizza variabili d'ambiente per proteggere le chiavi API.
 **Per Netlify:**
 Configura le variabili d'ambiente in "Site settings" → "Environment variables" nella dashboard di Netlify.
 
+📖 **Per istruzioni dettagliate passo-passo, vedi [NETLIFY_ENV_SETUP.md](./NETLIFY_ENV_SETUP.md)**
+
 ## Licenza
 
 © 2025 Piadineria La Caveja Lugano Viale Cattaneo. Tutti i diritti riservati.
