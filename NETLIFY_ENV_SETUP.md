@@ -18,7 +18,8 @@ Se la mappa funziona in locale ma non su Netlify, significa che la variabile d'a
 
 ### Passo 3: Aggiungi la chiave API
 1. **Key (Chiave)**: `VITE_GOOGLE_MAPS_API_KEY`
-2. **Value (Valore)**: Inserisci la tua Google Maps API key: `AIzaSyCjO9MkduRfoV-IS72MRaE9jajqf1SuJN0`
+2. **Value (Valore)**: Inserisci la tua Google Maps API key (ottienila da [Google Cloud Console](https://console.cloud.google.com/google/maps-apis))
+   - ⚠️ **NON** committare mai la chiave API nel repository!
 3. **Scopes (Ambiti)**: Seleziona tutti e tre:
    - ✅ **Production**
    - ✅ **Deploy previews**
@@ -40,9 +41,25 @@ Puoi verificare che la variabile sia configurata correttamente:
 2. Dovresti vedere `VITE_GOOGLE_MAPS_API_KEY` nella lista
 3. Assicurati che sia selezionata per tutti gli ambienti
 
+## Configurazione Secret Scanner (IMPORTANTE)
+
+Netlify rileva automaticamente le chiavi API nel build output. Per le Google Maps API keys questo è normale (sono progettate per essere pubbliche nel frontend), ma devi configurare Netlify per permetterle:
+
+### Passo aggiuntivo: Configura il Secret Scanner
+
+1. Vai su **"Site settings"** → **"Build & deploy"** → **"Environment"**
+2. Aggiungi una nuova variabile d'ambiente:
+   - **Key**: `SECRETS_SCAN_OMIT_KEYS`
+   - **Value**: `VITE_GOOGLE_MAPS_API_KEY`
+   - **Scopes**: Seleziona tutti e tre (Production, Deploy previews, Branch deploys)
+3. Clicca su **"Save"**
+
+Questo dice a Netlify di ignorare il secret scanner per questa chiave specifica, dato che è intenzionalmente pubblica nel bundle JavaScript.
+
 ## Nota importante
 
 - Le variabili d'ambiente devono iniziare con `VITE_` per essere accessibili nel codice frontend con Vite
 - Dopo aver aggiunto/modificato una variabile d'ambiente, è necessario fare un nuovo deploy
 - La variabile è sensibile e non dovrebbe essere committata nel repository (è già nel `.gitignore`)
+- Le Google Maps API keys sono progettate per essere pubbliche nel frontend, ma assicurati di limitarle per dominio nel Google Cloud Console
 
