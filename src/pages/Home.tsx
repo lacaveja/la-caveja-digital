@@ -47,6 +47,7 @@ const GoogleMapComponent = () => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [useIframe, setUseIframe] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -55,13 +56,24 @@ const GoogleMapComponent = () => {
       if (!mapContainerRef.current || !isMounted) return;
 
       try {
-        // Ottieni la configurazione dalla Netlify Function
-        // La chiave API non viene mai esposta nel bundle frontend
-        const response = await fetch('/.netlify/functions/get-map-config');
-        if (!response.ok) {
-          throw new Error('Failed to fetch map configuration from server');
+        // Prova a ottenere la configurazione dalla Netlify Function
+        // Se non disponibile (sviluppo locale), usa iframe semplice
+        let mapConfig;
+        try {
+          const response = await fetch('/.netlify/functions/get-map-config');
+          if (!response.ok) {
+            throw new Error('Netlify Function not available');
+          }
+          mapConfig = await response.json();
+        } catch (err) {
+          // Fallback: usa iframe semplice per sviluppo locale
+          console.log('Netlify Function not available, using iframe fallback');
+          if (isMounted) {
+            setUseIframe(true);
+            setLoading(false);
+          }
+          return;
         }
-        const mapConfig = await response.json();
 
         const apiKey = mapConfig.mapsApiKey;
         if (!apiKey) {
@@ -172,6 +184,23 @@ const GoogleMapComponent = () => {
       }
     };
   }, []);
+
+  // Se la Netlify Function non è disponibile, usa iframe semplice
+  if (useIframe) {
+    return (
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2771.2664554638222!2d8.9583646!3d46.005873699999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47842db537f15ca9%3A0xd372fda186360861!2sLa%20Caveja%20Lugano%20-%20Viale%20Cattaneo%2015!5e0!3m2!1sit!2sch!4v1763749173079!5m2!1sit!2sch"
+        width="100%"
+        height="500"
+        style={{ border: 0 }}
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        className="w-full h-[500px]"
+        title="Mappa La Caveja Lugano"
+      />
+    );
+  }
 
   return (
     <div ref={mapContainerRef} className="w-full h-[500px] relative">
