@@ -38,225 +38,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Autoplay from 'embla-carousel-autoplay';
 import logoCaveja from '@/assets/logo-caveja.png';
-
-// Componente per Google Maps con Store Locator
-const GoogleMapComponent = () => {
-  const mapContainerRef = useRef<HTMLDivElement>(null);
-  const [apiLoaded, setApiLoaded] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let isMounted = true;
-    let timeoutId: NodeJS.Timeout;
-
-    const initMap = async () => {
-      if (!mapContainerRef.current || !isMounted) return;
-
-      try {
-        // Attendi che lo script delle Extended Component Library sia caricato
-        await new Promise<void>((resolve) => {
-          if (document.querySelector('script[src*="extended-component-library"]')) {
-            resolve();
-          } else {
-            const checkScript = setInterval(() => {
-              if (document.querySelector('script[src*="extended-component-library"]')) {
-                clearInterval(checkScript);
-                resolve();
-              }
-            }, 100);
-            timeoutId = setTimeout(() => {
-              clearInterval(checkScript);
-              resolve();
-            }, 5000);
-          }
-        });
-
-        // Attendi che i web components siano definiti
-        await customElements.whenDefined('gmpx-api-loader');
-        await customElements.whenDefined('gmpx-store-locator');
-
-        if (!mapContainerRef.current || !isMounted) return;
-
-        // Crea gmpx-api-loader
-        const existingLoader = mapContainerRef.current.querySelector('gmpx-api-loader');
-        if (existingLoader) {
-          existingLoader.remove();
-        }
-
-        const apiLoader = document.createElement('gmpx-api-loader');
-        const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-        if (!apiKey) {
-          console.error('VITE_GOOGLE_MAPS_API_KEY is not configured');
-          if (isMounted) {
-            setError('La mappa non è configurata correttamente. Contatta l\'amministratore.');
-          }
-          return;
-        }
-        apiLoader.setAttribute('key', apiKey);
-        apiLoader.setAttribute('solution-channel', 'GMP_QB_locatorplus_v11_cABDF');
-        mapContainerRef.current.appendChild(apiLoader);
-
-        // Attendi che l'API sia caricata
-        let attempts = 0;
-        const maxAttempts = 50; // 5 secondi totali
-        await new Promise<void>((resolve, reject) => {
-          const checkApi = () => {
-            if (!isMounted) {
-              reject(new Error('Component unmounted'));
-              return;
-            }
-            if ((window as Window & { google?: { maps?: unknown } }).google?.maps) {
-              resolve();
-            } else if (attempts < maxAttempts) {
-              attempts++;
-              setTimeout(checkApi, 100);
-            } else {
-              reject(new Error('Google Maps API failed to load'));
-            }
-          };
-          checkApi();
-        });
-
-        if (!mapContainerRef.current || !isMounted) return;
-
-        // Crea gmpx-store-locator
-        const existingLocator = mapContainerRef.current.querySelector('gmpx-store-locator');
-        if (existingLocator) {
-          existingLocator.remove();
-        }
-
-        const locator = document.createElement('gmpx-store-locator');
-        locator.setAttribute('map-id', 'DEMO_MAP_ID');
-        locator.style.width = '100%';
-        locator.style.height = '100%';
-        locator.style.display = 'block';
-        mapContainerRef.current.appendChild(locator);
-
-        // Configura il locator
-        const CONFIGURATION = {
-          "locations": [
-            {
-              "title": "La Caveja Lugano - Viale Cattaneo 15",
-              "address1": "Viale Cattaneo 15",
-              "address2": "Lugano, Switzerland",
-              "coords": {"lat": 46.005873699999995, "lng": 8.9583646},
-              "placeId": "ChIJqVzxN7UthEcRYQg2hqH9ctM",
-              // Le foto verranno caricate automaticamente da Google Places se disponibili
-              "actions": [
-                {
-                  "label": "Ordina online",
-                  "defaultUrl": "https://www.ubereats.com/ch-it/store/piadineria-la-caveja-20/eQ8gfu_BU6SgL0tkk9X-yg"
-                }
-              ]
-            }
-          ],
-          "mapOptions": {
-            "center": {"lat": 46.005873699999995, "lng": 8.9583646},
-            "fullscreenControl": true,
-            "mapTypeControl": false,
-            "streetViewControl": false,
-            "zoom": 17,
-            "zoomControl": true,
-            "maxZoom": 17,
-            "mapId": "DEMO_MAP_ID"
-          },
-          "mapsApiKey": import.meta.env.VITE_GOOGLE_MAPS_API_KEY || (() => {
-            console.error('VITE_GOOGLE_MAPS_API_KEY is missing in CONFIGURATION');
-            return "";
-          })(),
-          "capabilities": {
-            "input": false,
-            "autocomplete": false,
-            "directions": false,
-            "distanceMatrix": false,
-            "details": true, // Abilita il caricamento automatico di foto e dettagli da Google Places
-            "actions": true
-          }
-        };
-
-        // Attendi che il locator sia pronto
-        await new Promise<void>((resolve) => {
-          let checkAttempts = 0;
-          const maxCheckAttempts = 30;
-          const checkLocator = () => {
-            if ('configureFromQuickBuilder' in locator && typeof (locator as { configureFromQuickBuilder?: (config: unknown) => void }).configureFromQuickBuilder === 'function') {
-              (locator as { configureFromQuickBuilder: (config: unknown) => void }).configureFromQuickBuilder(CONFIGURATION);
-              resolve();
-            } else if (checkAttempts < maxCheckAttempts) {
-              checkAttempts++;
-              setTimeout(checkLocator, 200);
-            } else {
-              resolve();
-            }
-          };
-          checkLocator();
-        });
-
-        if (isMounted) {
-          setApiLoaded(true);
-          setError(null);
-        }
-      } catch (e) {
-        console.error('Error initializing map:', e);
-        if (isMounted) {
-          setError('Errore nel caricamento della mappa. Riprova più tardi.');
-        }
-      }
-    };
-
-    const initTimeout = setTimeout(initMap, 500);
-
-    return () => {
-      isMounted = false;
-      clearTimeout(initTimeout);
-      if (timeoutId) clearTimeout(timeoutId);
-      if (mapContainerRef.current) {
-        const loader = mapContainerRef.current.querySelector('gmpx-api-loader');
-        const locator = mapContainerRef.current.querySelector('gmpx-store-locator');
-        if (loader) loader.remove();
-        if (locator) locator.remove();
-      }
-    };
-  }, []);
-
-  return (
-    <div ref={mapContainerRef} className="w-full h-[500px] relative">
-      <style>{`
-        gmpx-store-locator {
-          width: 100%;
-          height: 100%;
-          --gmpx-color-surface: #fff;
-          --gmpx-color-on-surface: #212121;
-          --gmpx-color-on-surface-variant: #757575;
-          --gmpx-color-primary: #1967d2;
-          --gmpx-color-outline: #e0e0e0;
-          --gmpx-fixed-panel-width-row-layout: 28.5em;
-          --gmpx-fixed-panel-height-column-layout: 65%;
-          --gmpx-font-family-base: "Roboto", sans-serif;
-          --gmpx-font-family-headings: "Roboto", sans-serif;
-          --gmpx-font-size-base: 0.875rem;
-          --gmpx-hours-color-open: #188038;
-          --gmpx-hours-color-closed: #d50000;
-          --gmpx-rating-color: #ffb300;
-          --gmpx-rating-color-empty: #e0e0e0;
-        }
-      `}</style>
-      {error && (
-        <div className="w-full h-full flex items-center justify-center bg-muted">
-          <p className="text-destructive">{error}</p>
-        </div>
-      )}
-      {!apiLoaded && !error && (
-        <div className="w-full h-full flex items-center justify-center bg-muted">
-          <p className="text-muted-foreground">Caricamento mappa...</p>
-        </div>
-      )}
-    </div>
-  );
-};
 
 export default function Home() {
   const { t } = useLanguage();
@@ -525,7 +309,17 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">{t.contacts.findUs}</h2>
           <div className="max-w-4xl mx-auto rounded-lg overflow-hidden shadow-medium relative">
-            <GoogleMapComponent />
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2771.2664554638222!2d8.9583646!3d46.005873699999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47842db537f15ca9%3A0xd372fda186360861!2sLa%20Caveja%20Lugano%20-%20Viale%20Cattaneo%2015!5e0!3m2!1sit!2sch!4v1763749173079!5m2!1sit!2sch"
+              width="100%"
+              height="500"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full h-[500px]"
+              title="Mappa La Caveja Lugano"
+            />
           </div>
           <div className="text-center mt-4 flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a
