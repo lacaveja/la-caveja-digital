@@ -84,16 +84,7 @@ Questo progetto è configurato per essere deployato facilmente su **Netlify**.
    ```
    Se ci sono errori, risolvili prima del deploy.
 
-2. **Configura le variabili d'ambiente:**
-   
-   **Per Netlify:**
-   - Vai su "Site settings" → "Environment variables"
-   - Aggiungi: `VITE_GOOGLE_MAPS_API_KEY` con il valore della tua Google Maps API key
-   - Assicurati di selezionare tutti gli ambienti (Production, Deploy previews, Branch deploys)
-   
-   **Importante:** Le variabili d'ambiente devono essere configurate PRIMA del primo deploy, altrimenti la mappa non funzionerà.
-
-3. **Verifica che tutte le immagini siano nella cartella `public/`** (sono già lì ✅)
+2. **Verifica che tutte le immagini siano nella cartella `public/`** (sono già lì ✅)
 
 4. **Quando il sito è online, aggiorna gli URL nel `sitemap.xml` e `robots.txt`:**
    - Cambia `https://lacaveja.ch` con l'URL effettivo che riceverai (es. `https://la-caveja-digital.netlify.app`)
