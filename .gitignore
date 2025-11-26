@@ -21,6 +21,7 @@ dist-ssr
 # Netlify documentation (contains secret references)
 NETLIFY_SECRETS_FIX.md
 NETLIFY_ENV_SETUP.md
+NETLIFY_SECRETS_CONFIG.md
 
 # Editor directories and files
 .vscode/*
