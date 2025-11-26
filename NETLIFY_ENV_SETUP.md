@@ -47,6 +47,9 @@ Netlify rileva automaticamente le chiavi API nel build output. Per le Google Map
 
 ### Passo aggiuntivo: Configura il Secret Scanner
 
+Netlify rileva automaticamente le chiavi API nel build output. Per le Google Maps API keys questo è normale (sono progettate per essere pubbliche nel frontend), ma devi configurare Netlify per permetterle.
+
+**Opzione 1: Ignora la chiave specifica (Consigliato)**
 1. Vai su **"Site settings"** → **"Build & deploy"** → **"Environment"**
 2. Aggiungi una nuova variabile d'ambiente:
    - **Key**: `SECRETS_SCAN_OMIT_KEYS`
@@ -54,7 +57,22 @@ Netlify rileva automaticamente le chiavi API nel build output. Per le Google Map
    - **Scopes**: Seleziona tutti e tre (Production, Deploy previews, Branch deploys)
 3. Clicca su **"Save"**
 
-Questo dice a Netlify di ignorare il secret scanner per questa chiave specifica, dato che è intenzionalmente pubblica nel bundle JavaScript.
+**Opzione 2: Ignora l'intera cartella dist (Se l'opzione 1 non funziona)**
+1. Aggiungi una nuova variabile d'ambiente:
+   - **Key**: `SECRETS_SCAN_OMIT_PATHS`
+   - **Value**: `dist/**`
+   - **Scopes**: Seleziona tutti e tre
+2. Clicca su **"Save"**
+
+**Opzione 3: Disabilita completamente lo scanning (Solo se necessario)**
+⚠️ **Usa questa opzione solo se le altre non funzionano**
+1. Aggiungi una nuova variabile d'ambiente:
+   - **Key**: `NETLIFY_SECRETS_SCAN_DISABLE`
+   - **Value**: `true`
+   - **Scopes**: Seleziona tutti e tre
+2. Clicca su **"Save"**
+
+Dopo aver configurato una di queste opzioni, fai un nuovo deploy.
 
 ## Nota importante
 
