@@ -40,7 +40,16 @@ cd la-caveja-digital
 npm install
 ```
 
-3. Avvia il server di sviluppo:
+3. Configura le variabili d'ambiente:
+```bash
+cp .env.example .env
+```
+Poi modifica il file `.env` e inserisci la tua Google Maps API key:
+```
+VITE_GOOGLE_MAPS_API_KEY=AIzaSyD1qVrcGj2LCMbSSVoQZY4QGs7-t1qIZCg
+```
+
+4. Avvia il server di sviluppo:
 ```bash
 npm run dev
 ```
@@ -63,7 +72,10 @@ Il progetto è configurato per il deploy su **Netlify**.
 **Opzione 1 - Tramite GitHub (Consigliato):**
 1. Pusha il codice su GitHub
 2. Vai su [netlify.com](https://netlify.com) e importa il repository
-3. Netlify rileva automaticamente le impostazioni - clicca "Deploy"
+3. **IMPORTANTE**: Configura le variabili d'ambiente:
+   - Vai su "Site settings" → "Environment variables"
+   - Aggiungi: `VITE_GOOGLE_MAPS_API_KEY` con il valore della tua API key
+4. Netlify rileva automaticamente le impostazioni - clicca "Deploy"
 
 Il sito sarà online in 2 minuti con un link provvisorio tipo: `https://la-caveja-digital.netlify.app`
 
@@ -76,6 +88,15 @@ netlify deploy --prod --dir=dist
 
 📖 **Per istruzioni dettagliate, vedi [DEPLOY.md](./DEPLOY.md)**
 
+## Variabili d'Ambiente
+
+Il progetto utilizza variabili d'ambiente per proteggere le chiavi API.
+
+**Variabili richieste:**
+- `VITE_GOOGLE_MAPS_API_KEY` - Chiave API di Google Maps (ottieni da [Google Cloud Console](https://console.cloud.google.com/google/maps-apis))
+
+**Per Netlify:**
+Configura le variabili d'ambiente in "Site settings" → "Environment variables" nella dashboard di Netlify.
 
 ## Licenza
 

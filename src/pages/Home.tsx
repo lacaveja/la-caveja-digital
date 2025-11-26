@@ -38,9 +38,180 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Autoplay from 'embla-carousel-autoplay';
 import logoCaveja from '@/assets/logo-caveja.png';
+
+// Componente per Google Maps Store Locator
+const GoogleMapComponent = () => {
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const initMap = async () => {
+      if (!mapContainerRef.current || !isMounted) return;
+
+      try {
+        const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+        if (!apiKey) {
+          console.error('VITE_GOOGLE_MAPS_API_KEY is not configured');
+          if (isMounted) {
+            setError('La mappa non è configurata correttamente. Contatta l\'amministratore.');
+          }
+          return;
+        }
+
+        // Attendi che lo script delle Extended Component Library sia caricato
+        await new Promise<void>((resolve) => {
+          if (document.querySelector('script[src*="extended-component-library"]')) {
+            resolve();
+          } else {
+            const checkScript = setInterval(() => {
+              if (document.querySelector('script[src*="extended-component-library"]')) {
+                clearInterval(checkScript);
+                resolve();
+              }
+            }, 100);
+            setTimeout(() => {
+              clearInterval(checkScript);
+              resolve();
+            }, 5000);
+          }
+        });
+
+        // Attendi che i web components siano definiti
+        await customElements.whenDefined('gmpx-api-loader');
+        await customElements.whenDefined('gmpx-store-locator');
+
+        if (!mapContainerRef.current || !isMounted) return;
+
+        // Rimuovi eventuali componenti esistenti
+        const existingLoader = mapContainerRef.current.querySelector('gmpx-api-loader');
+        const existingLocator = mapContainerRef.current.querySelector('gmpx-store-locator');
+        if (existingLoader) existingLoader.remove();
+        if (existingLocator) existingLocator.remove();
+
+        // Crea gmpx-api-loader
+        const apiLoader = document.createElement('gmpx-api-loader');
+        apiLoader.setAttribute('key', apiKey);
+        apiLoader.setAttribute('solution-channel', 'GMP_QB_locatorplus_v11_cABD');
+        mapContainerRef.current.appendChild(apiLoader);
+
+        // Crea gmpx-store-locator
+        const locator = document.createElement('gmpx-store-locator');
+        locator.setAttribute('map-id', 'DEMO_MAP_ID');
+        locator.style.width = '100%';
+        locator.style.height = '100%';
+        locator.style.display = 'block';
+        mapContainerRef.current.appendChild(locator);
+
+        // Configurazione
+        const CONFIGURATION = {
+          "locations": [
+            {
+              "title": "La Caveja Lugano - Viale Cattaneo 15",
+              "address1": "Viale Cattaneo 15",
+              "address2": "Lugano, Switzerland",
+              "coords": {"lat": 46.005772, "lng": 8.958437},
+              "placeId": "ChIJqVzxN7UthEcRYQg2hqH9ctM"
+            }
+          ],
+          "mapOptions": {
+            "center": {"lat": 46.005772, "lng": 8.958437},
+            "fullscreenControl": true,
+            "mapTypeControl": false,
+            "streetViewControl": false,
+            "zoom": 17,
+            "zoomControl": true,
+            "maxZoom": 17,
+            "mapId": "DEMO_MAP_ID"
+          },
+          "mapsApiKey": apiKey,
+          "capabilities": {
+            "input": true,
+            "autocomplete": true,
+            "directions": false,
+            "distanceMatrix": true,
+            "details": false,
+            "actions": false
+          }
+        };
+
+        // Attendi che il locator sia pronto e configuralo
+        await new Promise<void>((resolve) => {
+          let checkAttempts = 0;
+          const maxCheckAttempts = 30;
+          const checkLocator = () => {
+            if ('configureFromQuickBuilder' in locator && typeof (locator as { configureFromQuickBuilder?: (config: unknown) => void }).configureFromQuickBuilder === 'function') {
+              (locator as { configureFromQuickBuilder: (config: unknown) => void }).configureFromQuickBuilder(CONFIGURATION);
+              resolve();
+            } else if (checkAttempts < maxCheckAttempts) {
+              checkAttempts++;
+              setTimeout(checkLocator, 200);
+            } else {
+              resolve();
+            }
+          };
+          checkLocator();
+        });
+
+        if (isMounted) {
+          setError(null);
+        }
+      } catch (e) {
+        console.error('Error initializing map:', e);
+        if (isMounted) {
+          setError('Errore nel caricamento della mappa. Riprova più tardi.');
+        }
+      }
+    };
+
+    const initTimeout = setTimeout(initMap, 500);
+
+    return () => {
+      isMounted = false;
+      clearTimeout(initTimeout);
+      if (mapContainerRef.current) {
+        const loader = mapContainerRef.current.querySelector('gmpx-api-loader');
+        const locator = mapContainerRef.current.querySelector('gmpx-store-locator');
+        if (loader) loader.remove();
+        if (locator) locator.remove();
+      }
+    };
+  }, []);
+
+  return (
+    <div ref={mapContainerRef} className="w-full h-[500px] relative">
+      <style>{`
+        gmpx-store-locator {
+          width: 100%;
+          height: 100%;
+          --gmpx-color-surface: #fff;
+          --gmpx-color-on-surface: #212121;
+          --gmpx-color-on-surface-variant: #757575;
+          --gmpx-color-primary: #1967d2;
+          --gmpx-color-outline: #e0e0e0;
+          --gmpx-fixed-panel-width-row-layout: 28.5em;
+          --gmpx-fixed-panel-height-column-layout: 65%;
+          --gmpx-font-family-base: "Roboto", sans-serif;
+          --gmpx-font-family-headings: "Roboto", sans-serif;
+          --gmpx-font-size-base: 0.875rem;
+          --gmpx-hours-color-open: #188038;
+          --gmpx-hours-color-closed: #d50000;
+          --gmpx-rating-color: #ffb300;
+          --gmpx-rating-color-empty: #e0e0e0;
+        }
+      `}</style>
+      {error && (
+        <div className="w-full h-full flex items-center justify-center bg-muted">
+          <p className="text-destructive">{error}</p>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default function Home() {
   const { t } = useLanguage();
@@ -309,17 +480,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">{t.contacts.findUs}</h2>
           <div className="max-w-4xl mx-auto rounded-lg overflow-hidden shadow-medium relative">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2771.2664554638222!2d8.9583646!3d46.005873699999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47842db537f15ca9%3A0xd372fda186360861!2sLa%20Caveja%20Lugano%20-%20Viale%20Cattaneo%2015!5e0!3m2!1sit!2sch!4v1763749173079!5m2!1sit!2sch"
-              width="100%"
-              height="500"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="w-full h-[500px]"
-              title="Mappa La Caveja Lugano"
-            />
+            <GoogleMapComponent />
           </div>
           <div className="text-center mt-4 flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a
