@@ -1,0 +1,29 @@
+{
+  "mapsApiKey": "DEVELOPMENT_KEY_PLACEHOLDER",
+  "location": {
+    "title": "La Caveja Lugano - Viale Cattaneo 15",
+    "address1": "Viale Cattaneo 15",
+    "address2": "Lugano, Switzerland",
+    "coords": { "lat": 46.005772, "lng": 8.958437 },
+    "placeId": "ChIJqVzxN7UthEcRYQg2hqH9ctM"
+  },
+  "mapOptions": {
+    "center": { "lat": 46.005772, "lng": 8.958437 },
+    "fullscreenControl": true,
+    "mapTypeControl": false,
+    "streetViewControl": false,
+    "zoom": 17,
+    "zoomControl": true,
+    "maxZoom": 17,
+    "mapId": "DEMO_MAP_ID"
+  },
+  "capabilities": {
+    "input": true,
+    "autocomplete": true,
+    "directions": false,
+    "distanceMatrix": true,
+    "details": false,
+    "actions": false
+  }
+}
+

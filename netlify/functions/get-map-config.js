@@ -6,11 +6,16 @@ exports.handler = async (event, context) => {
   if (event.httpMethod !== 'GET') {
     return {
       statusCode: 405,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
       body: JSON.stringify({ error: 'Method not allowed' }),
     };
   }
 
-  const apiKey = process.env.VITE_GOOGLE_MAPS_API_KEY;
+  // Usa GOOGLE_MAPS_API_KEY invece di VITE_GOOGLE_MAPS_API_KEY
+  // per evitare che Vite lo inietti nel bundle
+  const apiKey = process.env.GOOGLE_MAPS_API_KEY || process.env.VITE_GOOGLE_MAPS_API_KEY;
 
   if (!apiKey) {
     return {

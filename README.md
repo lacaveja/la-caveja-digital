@@ -93,16 +93,23 @@ netlify deploy --prod --dir=dist
 Il progetto utilizza **Netlify Functions** per proteggere la chiave API Google Maps. La chiave non viene esposta nel bundle frontend.
 
 **Variabili richieste su Netlify:**
-- `VITE_GOOGLE_MAPS_API_KEY` - Chiave API di Google Maps (ottieni da [Google Cloud Console](https://console.cloud.google.com/google/maps-apis))
+- `GOOGLE_MAPS_API_KEY` - Chiave API di Google Maps (ottieni da [Google Cloud Console](https://console.cloud.google.com/google/maps-apis))
+  - **IMPORTANTE**: Usa `GOOGLE_MAPS_API_KEY` (senza prefisso `VITE_`) per evitare che Vite lo inietti nel bundle
   - Questa variabile viene usata solo dalla Netlify Function `get-map-config`
-  - Non viene iniettata nel bundle JavaScript frontend
+  - Non viene mai esposta nel bundle JavaScript frontend
 
 **Per sviluppo locale:**
-Il file `.env` locale viene usato come fallback quando la Netlify Function non è disponibile.
+Usa Netlify CLI per testare le functions localmente:
+```bash
+npm install -g netlify-cli
+netlify dev
+```
+
+Oppure configura `GOOGLE_MAPS_API_KEY` nel file `.env` locale.
 
 **Per Netlify:**
 1. Vai su "Site settings" → "Environment variables"
-2. Aggiungi `VITE_GOOGLE_MAPS_API_KEY` con il valore della tua API key
+2. Aggiungi `GOOGLE_MAPS_API_KEY` (senza prefisso `VITE_`) con il valore della tua API key
 3. La chiave sarà disponibile solo server-side nella function
 
 ## Licenza
