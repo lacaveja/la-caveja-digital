@@ -90,13 +90,20 @@ netlify deploy --prod --dir=dist
 
 ## Variabili d'Ambiente
 
-Il progetto utilizza variabili d'ambiente per proteggere le chiavi API.
+Il progetto utilizza **Netlify Functions** per proteggere la chiave API Google Maps. La chiave non viene esposta nel bundle frontend.
 
-**Variabili richieste:**
+**Variabili richieste su Netlify:**
 - `VITE_GOOGLE_MAPS_API_KEY` - Chiave API di Google Maps (ottieni da [Google Cloud Console](https://console.cloud.google.com/google/maps-apis))
+  - Questa variabile viene usata solo dalla Netlify Function `get-map-config`
+  - Non viene iniettata nel bundle JavaScript frontend
+
+**Per sviluppo locale:**
+Il file `.env` locale viene usato come fallback quando la Netlify Function non è disponibile.
 
 **Per Netlify:**
-Configura le variabili d'ambiente in "Site settings" → "Environment variables" nella dashboard di Netlify.
+1. Vai su "Site settings" → "Environment variables"
+2. Aggiungi `VITE_GOOGLE_MAPS_API_KEY` con il valore della tua API key
+3. La chiave sarà disponibile solo server-side nella function
 
 ## Licenza
 

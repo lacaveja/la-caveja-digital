@@ -46,6 +46,7 @@ import logoCaveja from '@/assets/logo-caveja.png';
 const GoogleMapComponent = () => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
@@ -54,13 +55,54 @@ const GoogleMapComponent = () => {
       if (!mapContainerRef.current || !isMounted) return;
 
       try {
-        const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-        if (!apiKey) {
-          console.error('VITE_GOOGLE_MAPS_API_KEY is not configured');
-          if (isMounted) {
-            setError('La mappa non è configurata correttamente. Contatta l\'amministratore.');
+        // Ottieni la configurazione dalla Netlify Function
+        let mapConfig;
+        try {
+          const response = await fetch('/.netlify/functions/get-map-config');
+          if (!response.ok) {
+            throw new Error('Failed to fetch map configuration');
           }
-          return;
+          mapConfig = await response.json();
+        } catch (err) {
+          console.error('Error fetching map config:', err);
+          // Fallback: usa variabile d'ambiente se la function non è disponibile (sviluppo locale)
+          const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+          if (!apiKey) {
+            throw new Error('Google Maps API key not configured');
+          }
+          mapConfig = {
+            mapsApiKey: apiKey,
+            location: {
+              title: "La Caveja Lugano - Viale Cattaneo 15",
+              address1: "Viale Cattaneo 15",
+              address2: "Lugano, Switzerland",
+              coords: { lat: 46.005772, lng: 8.958437 },
+              placeId: "ChIJqVzxN7UthEcRYQg2hqH9ctM"
+            },
+            mapOptions: {
+              center: { lat: 46.005772, lng: 8.958437 },
+              fullscreenControl: true,
+              mapTypeControl: false,
+              streetViewControl: false,
+              zoom: 17,
+              zoomControl: true,
+              maxZoom: 17,
+              mapId: "DEMO_MAP_ID"
+            },
+            capabilities: {
+              input: true,
+              autocomplete: true,
+              directions: false,
+              distanceMatrix: true,
+              details: false,
+              actions: false
+            }
+          };
+        }
+
+        const apiKey = mapConfig.mapsApiKey;
+        if (!apiKey) {
+          throw new Error('Google Maps API key not found in configuration');
         }
 
         // Attendi che lo script delle Extended Component Library sia caricato
@@ -107,36 +149,20 @@ const GoogleMapComponent = () => {
         locator.style.display = 'block';
         mapContainerRef.current.appendChild(locator);
 
-        // Configurazione
+        // Configurazione dalla function
         const CONFIGURATION = {
           "locations": [
             {
-              "title": "La Caveja Lugano - Viale Cattaneo 15",
-              "address1": "Viale Cattaneo 15",
-              "address2": "Lugano, Switzerland",
-              "coords": {"lat": 46.005772, "lng": 8.958437},
-              "placeId": "ChIJqVzxN7UthEcRYQg2hqH9ctM"
+              "title": mapConfig.location.title,
+              "address1": mapConfig.location.address1,
+              "address2": mapConfig.location.address2,
+              "coords": mapConfig.location.coords,
+              "placeId": mapConfig.location.placeId
             }
           ],
-          "mapOptions": {
-            "center": {"lat": 46.005772, "lng": 8.958437},
-            "fullscreenControl": true,
-            "mapTypeControl": false,
-            "streetViewControl": false,
-            "zoom": 17,
-            "zoomControl": true,
-            "maxZoom": 17,
-            "mapId": "DEMO_MAP_ID"
-          },
+          "mapOptions": mapConfig.mapOptions,
           "mapsApiKey": apiKey,
-          "capabilities": {
-            "input": true,
-            "autocomplete": true,
-            "directions": false,
-            "distanceMatrix": true,
-            "details": false,
-            "actions": false
-          }
+          "capabilities": mapConfig.capabilities
         };
 
         // Attendi che il locator sia pronto e configuralo
@@ -159,11 +185,13 @@ const GoogleMapComponent = () => {
 
         if (isMounted) {
           setError(null);
+          setLoading(false);
         }
       } catch (e) {
         console.error('Error initializing map:', e);
         if (isMounted) {
           setError('Errore nel caricamento della mappa. Riprova più tardi.');
+          setLoading(false);
         }
       }
     };
@@ -204,6 +232,11 @@ const GoogleMapComponent = () => {
           --gmpx-rating-color-empty: #e0e0e0;
         }
       `}</style>
+      {loading && !error && (
+        <div className="w-full h-full flex items-center justify-center bg-muted">
+          <p className="text-muted-foreground">Caricamento mappa...</p>
+        </div>
+      )}
       {error && (
         <div className="w-full h-full flex items-center justify-center bg-muted">
           <p className="text-destructive">{error}</p>
