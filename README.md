@@ -46,7 +46,7 @@ cp .env.example .env
 ```
 Poi modifica il file `.env` e inserisci la tua Google Maps API key:
 ```
-VITE_GOOGLE_MAPS_API_KEY=AIzaSyD1qVrcGj2LCMbSSVoQZY4QGs7-t1qIZCg
+VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
 ```
 
 4. Avvia il server di sviluppo:
