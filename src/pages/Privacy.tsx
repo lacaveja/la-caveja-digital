@@ -1,8 +1,34 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card } from '@/components/ui/card';
+import { SEOHead } from '@/components/SEOHead';
 
 export default function Privacy() {
   const { language } = useLanguage();
+
+  const seoContent = {
+    it: {
+      title: 'Privacy Policy - Piadineria La Caveja 2 Lugano Viale Cattaneo 15',
+      description: 'Privacy policy della Piadineria La Caveja Lugano. Informazioni sulla protezione dei dati personali e utilizzo dei cookie.',
+      keywords: 'privacy policy, protezione dati, cookie policy, piadineria lugano privacy',
+    },
+    en: {
+      title: 'Privacy Policy - Piadineria La Caveja 2 Lugano Viale Cattaneo 15',
+      description: 'Privacy policy of Piadineria La Caveja Lugano. Information about personal data protection and cookie usage.',
+      keywords: 'privacy policy, data protection, cookie policy, piadineria lugano privacy',
+    },
+    de: {
+      title: 'Datenschutzerklärung - Piadineria La Caveja 2 Lugano Viale Cattaneo 15',
+      description: 'Datenschutzerklärung der Piadineria La Caveja Lugano. Informationen zum Schutz personenbezogener Daten und zur Verwendung von Cookies.',
+      keywords: 'datenschutzerklärung, datenschutz, cookie-richtlinie, piadineria lugano datenschutz',
+    },
+    fr: {
+      title: 'Politique de Confidentialité - Piadineria La Caveja 2 Lugano Viale Cattaneo 15',
+      description: 'Politique de confidentialité de la Piadineria La Caveja Lugano. Informations sur la protection des données personnelles et l\'utilisation des cookies.',
+      keywords: 'politique de confidentialité, protection des données, politique de cookies, piadineria lugano confidentialité',
+    },
+  };
+
+  const currentSEO = seoContent[language as keyof typeof seoContent] || seoContent.it;
 
   const content = {
     it: {
@@ -150,6 +176,13 @@ export default function Privacy() {
   const currentContent = content[language];
 
   return (
+    <>
+      <SEOHead
+        title={currentSEO.title}
+        description={currentSEO.description}
+        keywords={currentSEO.keywords}
+        canonical="https://lacaveja.ch/privacy"
+      />
     <div className="min-h-screen py-16 md:py-24">
       <div className="container mx-auto px-4">
         <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-primary bg-clip-text text-transparent">
@@ -174,5 +207,6 @@ export default function Privacy() {
         </Card>
       </div>
     </div>
+    </>
   );
 }

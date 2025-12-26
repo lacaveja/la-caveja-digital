@@ -5,12 +5,45 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Info } from 'lucide-react';
+import { SEOHead } from '@/components/SEOHead';
 
 export default function Menu() {
   const { t, language } = useLanguage();
   const [isAllergensOpen, setIsAllergensOpen] = useState(false);
 
+  const seoContent = {
+    it: {
+      title: 'Menu - Piadineria La Caveja 2 Lugano Viale Cattaneo 15 | Piadina Romagnola',
+      description: 'Scopri il nostro menu completo di piadine romagnole autentiche. Piadine classiche, 8 cereali, senza glutine e specialità. Take-away a Lugano.',
+      keywords: 'menu piadine, piadina romagnola menu, piadineria lugano menu, take away lugano menu',
+    },
+    en: {
+      title: 'Menu - Piadineria La Caveja 2 Lugano Viale Cattaneo 15 | Authentic Romagnola Piadina',
+      description: 'Discover our complete menu of authentic Romagnola piadinas. Classic, 8-grain, gluten-free piadinas and specialties. Take-away in Lugano.',
+      keywords: 'piadina menu, romagnola piadina menu, piadineria lugano menu, take away lugano menu',
+    },
+    de: {
+      title: 'Menü - Piadineria La Caveja 2 Lugano Viale Cattaneo 15 | Authentische Romagnola Piadina',
+      description: 'Entdecken Sie unser vollständiges Menü mit authentischen Romagnola-Piadinen. Klassische, 8-Korn-, glutenfreie Piadinen und Spezialitäten. Take-away in Lugano.',
+      keywords: 'piadina menü, romagnola piadina menü, piadineria lugano menü, take away lugano menü',
+    },
+    fr: {
+      title: 'Menu - Piadineria La Caveja 2 Lugano Viale Cattaneo 15 | Piadina Romagnole Authentique',
+      description: 'Découvrez notre menu complet de piadinas romagnoles authentiques. Piadinas classiques, 8 céréales, sans gluten et spécialités. À emporter à Lugano.',
+      keywords: 'menu piadina, piadina romagnole menu, piadineria lugano menu, à emporter lugano menu',
+    },
+  };
+
+  const currentSEO = seoContent[language as keyof typeof seoContent] || seoContent.it;
+
   return (
+    <>
+      <SEOHead
+        title={currentSEO.title}
+        description={currentSEO.description}
+        keywords={currentSEO.keywords}
+        canonical="https://lacaveja.ch/menu"
+      />
     <div className="min-h-screen py-16 md:py-24">
       <div className="container mx-auto px-4">
         <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 bg-gradient-primary bg-clip-text text-transparent">
@@ -92,5 +125,6 @@ export default function Menu() {
         </div>
       </div>
     </div>
+    </>
   );
 }

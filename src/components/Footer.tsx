@@ -112,13 +112,13 @@ export const Footer = () => {
             </p>
             <div className="mt-4">
               <a
-                href="https://www.instagram.com/lacaveja_lugano/"
+                href="https://www.instagram.com/lacaveja2lugano"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 <Instagram className="h-5 w-5 mr-2" />
-                @lacaveja_lugano
+                @lacaveja2lugano
               </a>
             </div>
           </div>

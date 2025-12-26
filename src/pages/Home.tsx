@@ -472,7 +472,7 @@ export default function Home() {
             </a>
 
             <a
-              href="https://www.instagram.com/lacaveja_lugano/"
+              href="https://www.instagram.com/lacaveja2lugano"
               target="_blank"
               rel="noopener noreferrer"
               className="group aspect-square"
@@ -481,7 +481,7 @@ export default function Home() {
                 <Instagram className="h-10 w-10 md:h-12 md:w-12 text-primary group-hover:text-pink-500 mb-2 md:mb-3 group-hover:scale-110 transition-all duration-300" />
                 <h3 className="font-bold text-sm md:text-base mb-1 text-foreground">Instagram</h3>
                 <p className="text-xs md:text-sm text-muted-foreground">
-                  @lacaveja_lugano
+                  @lacaveja2lugano
                 </p>
               </Card>
             </a>
